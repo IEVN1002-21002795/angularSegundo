@@ -1,0 +1,68 @@
+
+<br>  
+
+
+
+<div class="grid grid-cols-4 gap-4">
+  <div class="col-start-2">
+    <form [formGroup]="formularioEmpleado" class="max-w-sm mx-auto">
+      <div class="mb-5">
+        <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Matrícula:</label>
+        <input type="text" id="matricula" formControlName="matricula" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Matrícula" required />
+      </div>
+
+      <div class="mb-5">
+        <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre" required />
+      </div>
+
+      <div class="mb-5">
+        <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Correo:</label>
+        <input type="email" id="correo" formControlName="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Correo" required />
+      </div>
+
+      <div class="mb-5">
+        <label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Edad:</label>
+        <input type="number" id="edad" formControlName="edad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Edad" required />
+      </div>
+
+      <div class="mb-5">
+        <label for="horasTrabajadas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Horas Trabajadas:</label>
+        <input type="number" id="horasTrabajadas" formControlName="horasTrabajadas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Horas trabajadas" required />
+      </div>
+
+      <button (click)="agregarEmpleado()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
+      <button (click)="mostrarTabla()" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Imprimir</button>
+    </form>
+  </div>
+
+  <div *ngIf="tablaVisible" class="col-start-2 mt-5">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th>Matrícula</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Edad</th>
+          <th>Horas Trabajadas</th>
+          <th>Sueldo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados; let i = index">
+          <td>{{ empleado.matricula }}</td>
+          <td>{{ empleado.nombre }}</td>
+          <td>{{ empleado.correo }}</td>
+          <td>{{ empleado.edad }}</td>
+          <td>{{ empleado.horasTrabajadas }}</td>
+          <td>{{ empleado.sueldo }}</td>
+          <td>
+            <button (click)="modificarEmpleado(i)" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-700">Modificar</button>
+            <button (click)="eliminarEmpleado(i)" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-700">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
